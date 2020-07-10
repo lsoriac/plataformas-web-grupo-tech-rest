@@ -15,7 +15,27 @@ app.get('/impresora', (req, res) => {
             }
             res.json({
                 ok: true,
+                message: 'Impresoras encontradas',
                 impresora: impresoras
+            })
+        })
+});
+
+app.get('/impresora/:id', (req, res) => {
+    let id = req.params.id;
+    Impresora.findById(id, 'marca modelo serie color ip precio')
+        .exec((err, impresoraDB) => {
+            if (err) {
+                //Error que está incorrecta la petición
+                return res.status(400).json({
+                    ok: false,
+                    err
+                })
+            }
+            res.json({
+                ok: true,
+                message: 'Impresora encontrada',
+                impresora: impresoraDB
             })
         })
 });
@@ -41,6 +61,7 @@ app.post('/impresora', (req, res) => {
         }
         res.json({
             ok: true,
+            message: 'Impresora insertada correctamente',
             impresora: impresoraDB
         })
     })
@@ -64,6 +85,7 @@ app.put('/impresora/:id', (req, res) => {
             }
             res.json({
                 ok: true,
+                message: 'Impresora encontrada y modificada',
                 impresora: impresoraDB
             })
         })
@@ -88,6 +110,7 @@ app.delete('/impresora/:id', (req, res) => {
         } else {
             res.json({
                 ok: true,
+                message: 'Impresora encontrada y eliminada',
                 impresora: impresoraDB
             })
         }
