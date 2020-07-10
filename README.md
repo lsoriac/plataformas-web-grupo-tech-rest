@@ -25,7 +25,7 @@ npm start
 ```
   - _Enlace en Heroku._
 ```
-colocar enlace
+lsoriac/plataformas-web-grupo-tech-rest 
 ```
 
 ## Construido con 🛠️
